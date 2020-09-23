@@ -1,0 +1,55 @@
+<div>
+  <label (click)="logout()">logout</label>
+</div>
+
+<mat-tab-group dynamicHeight mat-align-tabs="center" color="accent" selectedIndex="1">
+  <mat-tab label="Add video">
+
+    <ngx-dropzone (change)="onDrop($event)" accept="video/*">
+      <ngx-dropzone-label>
+        <img src="assets/upload-icon.png">
+        <br>
+        <label class="select-label">
+        Select video files to upload
+        </label>
+        <br>
+        <label class="drag-label">
+        Or Drag and drop video files
+        </label>
+          <br>
+          <br>
+          <br>
+        <label class="upload-label">
+          Upload video
+        </label>
+      </ngx-dropzone-label>
+
+
+    </ngx-dropzone>
+
+
+    <div *ngFor="let file of files" class="tasks">
+      <app-upload-task [file]="file"></app-upload-task>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="My videos">
+    <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" gutterSize="20px">
+      <mat-grid-tile *ngFor="let file of userVideos; let index = index">
+        <div>
+          <vg-player>
+            <vg-buffering></vg-buffering>
+            <vg-controls>
+              <vg-time-display  vgProperty="total"></vg-time-display>
+            </vg-controls>
+            <video #media  [vgMedia]="media" preload="auto" [src]="file.downloadURL">
+            </video>
+          </vg-player>
+        </div>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>
+
+

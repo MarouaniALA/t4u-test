@@ -1,0 +1,22 @@
+<div class="main-div">
+  <mat-card>
+    <form [formGroup]="loginForm">
+      <div class="form-card">
+        <label class="welcome-label">
+          Welcome
+        </label>
+        <mat-form-field>
+          <mat-label>
+            Nom Complet
+          </mat-label>
+          <input matInput formControlName="fullName">
+
+        </mat-form-field>
+        <button class="btn-google" type="button" (click)="googleAuth()">
+          Sign in with Google
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+</div>

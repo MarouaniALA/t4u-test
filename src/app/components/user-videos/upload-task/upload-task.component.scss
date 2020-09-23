@@ -1,0 +1,21 @@
+.progres-div {
+  width: 100%;
+  text-align: center;
+}
+
+mat-progress-bar {
+  height: 12px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+hr {
+  color: #eae8e8;
+}
+
+.snapshot-block {
+  text-align: center;
+  button {
+    margin: 0 10px;
+  }
+}

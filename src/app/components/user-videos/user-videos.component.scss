@@ -1,0 +1,43 @@
+mat-tab-group::ng-deep .mat-tab-header {
+  border-bottom: unset!important;
+}
+mat-tab-group::ng-deep .mat-tab-body {
+  margin-top: 40px;
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  font-weight: 700;
+  color: #ea2c5a;
+  opacity: 1;
+}
+
+mat-grid-list {
+  margin: 0 30px;
+}
+
+ngx-dropzone {
+  height: unset;
+  border: unset;
+}
+.select-label {
+  color: #373737;
+  cursor: pointer;
+}
+
+.drag-label {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.upload-label {
+  background: #ea2c5a;
+  color: white;
+  padding: 10px 50px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.tasks {
+  margin: 65px 17px;
+}

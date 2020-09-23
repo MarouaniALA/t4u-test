@@ -1,0 +1,39 @@
+<mat-grid-list cols="2" rowHeight="5:1">
+  <mat-grid-tile>
+    <label>{{file.name}}</label>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div *ngIf="percentage | async as pct" class="progres-div">
+
+      <mat-progress-bar mode="determinate" [value]="pct" color="accent"></mat-progress-bar>
+
+      {{ pct | number:'0.0-0' }}%
+
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+
+<div *ngIf="(snapshot | async) as snap" class="snapshot-block">
+
+
+  <div *ngIf="downloadURL as url">
+    <img [src]="url" width="50" height="50"><br>
+  </div>
+
+  <button mat-mini-fab color="primary" (click)="task.pause()" [disabled]="!isActive(snap) || canceled">
+    <mat-icon >pause_circle_filled</mat-icon>
+  </button>
+
+  <button mat-mini-fab color="warn" (click)="task.cancel()" [disabled]="!isActive(snap)">
+    <mat-icon >cancel</mat-icon>
+  </button>
+
+  <button mat-mini-fab color="primary" (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">
+    <mat-icon >play_circle_filled</mat-icon>
+  </button>
+
+</div>
+<hr>

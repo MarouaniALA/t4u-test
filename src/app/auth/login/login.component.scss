@@ -1,0 +1,57 @@
+.main-div {
+  background-image: url("~src/assets/font-login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  display: grid;
+  text-align: center;
+  min-width: 400px;
+  padding: 50px 20px 10px;
+  min-height: 250px;
+
+  mat-form-field {
+    margin: 16px;
+  }
+}
+
+.welcome-label {
+  font-size: xxx-large;
+  color: #666e86;
+  margin-bottom: 60px;
+}
+
+.mat-card {
+  border-radius: 16px;
+}
+
+.btn-google {
+  height: 40px;
+  background-color: #d44c3d;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  margin: 30px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .form-card {
+    min-width: unset;
+  }
+  .welcome-label {
+    font-size: xx-large;
+  }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
