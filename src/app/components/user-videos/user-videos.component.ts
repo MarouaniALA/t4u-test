@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {IFile} from '../../models/IFile';
+import {Router} from '@angular/router';
+import {PassObjectService} from '../../services/pass-object.service';
 
 @Component({
   selector: 'app-user-videos',
@@ -15,7 +17,8 @@ export class UserVideosComponent implements OnInit {
   config;
   breakpoint: number;
 
-  constructor(public authService: AuthService, private afs: AngularFirestore) {
+  constructor(public authService: AuthService, private afs: AngularFirestore, private router: Router,
+              private passObjectService: PassObjectService) {
   }
 
   ngOnInit(): void {
@@ -43,10 +46,17 @@ export class UserVideosComponent implements OnInit {
     )
       .get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        this.userVideos.push(doc.data() as IFile);
+        const file = doc.data() as IFile;
+        file.id = doc.id;
+        this.userVideos.push(file);
       });
     });
 
+  }
+
+  watchVideo(file: IFile) {
+    // this.passObjectService.setCurrentWatchFile(file);
+    this.router.navigate(['/watchVideos', file.id]);
   }
 
   logout() {

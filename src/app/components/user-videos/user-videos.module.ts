@@ -12,6 +12,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule} from 'ngx-videogular';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [UserVideosComponent, UploadTaskComponent],
@@ -25,7 +26,8 @@ import {VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule} 
     MatButtonModule,
     MatIconModule,
     VgCoreModule,
-    VgControlsModule, VgOverlayPlayModule, VgBufferingModule
+    VgControlsModule, VgOverlayPlayModule, VgBufferingModule,
+    SharedModule
 ]
 })
 export class UserVideosModule { }

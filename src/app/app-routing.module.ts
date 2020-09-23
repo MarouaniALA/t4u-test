@@ -9,8 +9,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule)
   },
-  { path: 'userVideos', loadChildren: () => import('./components/user-videos/user-videos.module').then(m => m.UserVideosModule) },
-  { path: 'watchVideos', loadChildren: () => import('./components/watch-videos/watch-videos.module').then(m => m.WatchVideosModule) }
+  {
+    path: 'userVideos', loadChildren: () => import('./components/user-videos/user-videos.module').then(m => m.UserVideosModule)
+  },
+  {
+    path: 'watchVideos/:fileId', loadChildren: () =>
+      import('./components/watch-videos/watch-videos.module').then(m => m.WatchVideosModule)
+  }
 ];
 
 @NgModule({

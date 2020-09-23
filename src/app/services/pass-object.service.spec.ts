@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StorageService } from './storage.service';
+import { PassObjectService } from './pass-object.service';
 
-describe('StorageService', () => {
-  let service: StorageService;
+describe('PassObjectService', () => {
+  let service: PassObjectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(StorageService);
+    service = TestBed.inject(PassObjectService);
   });
 
   it('should be created', () => {

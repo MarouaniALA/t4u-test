@@ -3,4 +3,5 @@ export interface IFile {
   path: string;
   type: string;
   uid: string;
+  id: string;
 }

@@ -35,7 +35,7 @@
 
   <mat-tab label="My videos">
     <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" gutterSize="20px">
-      <mat-grid-tile *ngFor="let file of userVideos; let index = index">
+      <mat-grid-tile *ngFor="let file of userVideos" (click)="watchVideo(file)">
         <div>
           <vg-player>
             <vg-buffering></vg-buffering>
@@ -51,5 +51,7 @@
     </mat-grid-list>
   </mat-tab>
 </mat-tab-group>
+
+  <app-footer></app-footer>
 
 
