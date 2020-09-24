@@ -1,8 +1,8 @@
-<div>
-  <label (click)="logout()">logout</label>
+<div class="container-fluid text-align-end">
+  <mat-icon (click)="logout()" class="logout mt-3 mr-4">exit_to_app</mat-icon>
 </div>
 
-<mat-tab-group dynamicHeight mat-align-tabs="center" color="accent" selectedIndex="1">
+<mat-tab-group class="mb-300" dynamicHeight mat-align-tabs="center" color="accent" selectedIndex="1">
   <mat-tab label="Add video">
 
     <ngx-dropzone (change)="onDrop($event)" accept="video/*">
@@ -10,15 +10,15 @@
         <img src="assets/upload-icon.png">
         <br>
         <label class="select-label">
-        Select video files to upload
+          Select video files to upload
         </label>
         <br>
         <label class="drag-label">
-        Or Drag and drop video files
+          Or Drag and drop video files
         </label>
-          <br>
-          <br>
-          <br>
+        <br>
+        <br>
+        <br>
         <label class="upload-label">
           Upload video
         </label>
@@ -34,24 +34,43 @@
   </mat-tab>
 
   <mat-tab label="My videos">
+    <div class="mb-3 mr-4 justify-content-end d-flex">
+      <mat-icon class="refresh-icon" (click)="getMyVideos()">refresh</mat-icon>
+    </div>
     <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" gutterSize="20px">
-      <mat-grid-tile *ngFor="let file of userVideos" (click)="watchVideo(file)">
-        <div>
-          <vg-player>
-            <vg-buffering></vg-buffering>
-            <vg-controls>
-              <vg-time-display  vgProperty="total"></vg-time-display>
-            </vg-controls>
-            <video #media  [vgMedia]="media" preload="auto" [src]="file.downloadURL">
-            </video>
-          </vg-player>
-        </div>
-
-      </mat-grid-tile>
+      <ng-container *ngIf="userVideos.length !== 0">
+        <mat-grid-tile *ngFor="let file of userVideos" (click)="watchVideo(file)">
+          <div>
+            <vg-player>
+              <vg-buffering></vg-buffering>
+              <vg-controls>
+                <vg-time-display vgProperty="total"></vg-time-display>
+              </vg-controls>
+              <video #media [vgMedia]="media" preload="auto" [src]="file.downloadURL">
+              </video>
+            </vg-player>
+          </div>
+        </mat-grid-tile>
+      </ng-container>
+      <ng-container *ngIf="userVideos.length === 0 && !showSpinner">
+        <mat-grid-tile [colspan]="breakpoint" rowspan="2">
+          <div class="d-grid">
+            <label class="text-center">
+              <mat-icon class="no-vid-icon">videocam_off</mat-icon>
+            </label>
+            <label class="no-vid-text">You don't have videos yet </label>
+          </div>
+        </mat-grid-tile>
+      </ng-container>
     </mat-grid-list>
   </mat-tab>
 </mat-tab-group>
 
-  <app-footer></app-footer>
+<div class="spinner" *ngIf="showSpinner">
+  <div class="spinner-border" role="status">
+  </div>
+</div>
+
+<app-footer></app-footer>
 
 

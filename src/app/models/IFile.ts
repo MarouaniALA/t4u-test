@@ -4,4 +4,6 @@ export interface IFile {
   type: string;
   uid: string;
   id: string;
+  title: string;
+  views: number;
 }

@@ -1,39 +1,55 @@
-<mat-grid-list cols="2" rowHeight="5:1">
-  <mat-grid-tile>
-    <label>{{file.name}}</label>
-  </mat-grid-tile>
+<div>
+  <form [formGroup]="uploadForm">
+    <div class="text-center mb-5">
 
-  <mat-grid-tile>
-    <div *ngIf="percentage | async as pct" class="progres-div">
+      <mat-form-field class="mr-3">
+        <mat-label>
+          Title
+        </mat-label>
+        <input matInput formControlName="title" required>
 
-      <mat-progress-bar mode="determinate" [value]="pct" color="accent"></mat-progress-bar>
-
-      {{ pct | number:'0.0-0' }}%
-
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="startUpload()">
+        Start Upload
+      </button>
     </div>
-  </mat-grid-tile>
+  </form>
 
-</mat-grid-list>
+  <mat-grid-list [cols]="breakpoint" rowHeight="5:1" (window:resize)="onResize($event)">
+    <mat-grid-tile [colspan]="breakpoint">
+      <label>{{file.name}}</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="breakpoint">
+      <div *ngIf="percentage | async as pct" class="progres-div">
+
+        <mat-progress-bar mode="determinate" [value]="pct" color="accent"></mat-progress-bar>
+
+        {{ pct | number:'0.0-0' }}%
+
+      </div>
+    </mat-grid-tile>
+
+  </mat-grid-list>
 
 
-<div *ngIf="(snapshot | async) as snap" class="snapshot-block">
+  <div *ngIf="(snapshot | async) as snap" class="snapshot-block">
 
 
-  <div *ngIf="downloadURL as url">
-    <img [src]="url" width="50" height="50"><br>
+    <button mat-mini-fab color="primary" (click)="task.pause()" [disabled]="!isActive(snap) || canceled">
+      <mat-icon>pause_circle_filled</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="warn" (click)="task.cancel()" [disabled]="!isActive(snap)">
+      <mat-icon>cancel</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="primary" (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">
+      <mat-icon>play_circle_filled</mat-icon>
+    </button>
+
   </div>
-
-  <button mat-mini-fab color="primary" (click)="task.pause()" [disabled]="!isActive(snap) || canceled">
-    <mat-icon >pause_circle_filled</mat-icon>
-  </button>
-
-  <button mat-mini-fab color="warn" (click)="task.cancel()" [disabled]="!isActive(snap)">
-    <mat-icon >cancel</mat-icon>
-  </button>
-
-  <button mat-mini-fab color="primary" (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">
-    <mat-icon >play_circle_filled</mat-icon>
-  </button>
+  <hr>
 
 </div>
-<hr>
+

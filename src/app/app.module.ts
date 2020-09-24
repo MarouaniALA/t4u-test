@@ -8,10 +8,12 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {SharedModule} from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NotFound404Component } from './components/not-found404/not-found404.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFound404Component
   ],
   imports: [
     BrowserModule,

@@ -36,27 +36,23 @@ export class AuthService {
       } else {
         localStorage.removeItem('user');
         this.userData = null;
-        // JSON.parse(localStorage.getItem('user'));
       }
     });
   }
 
-  // Sign in with Google
+
   GoogleAuth(fullName?) {
     return this.authLogin(new auth.GoogleAuthProvider(), fullName);
   }
 
-  // Auth logic to run auth providers
   authLogin(provider, fullName?) {
     return this.afAuth.signInWithPopup(provider)
       .then(async (result) => {
-        console.log('You have been successfully logged in!');
         await this.setUserData(result.user, fullName);
         this.ngZone.run(() => {
           this.router.navigate(['userVideos']);
         });
       }).catch((error) => {
-        console.log(error);
       });
   }
 
@@ -82,5 +78,9 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
+  }
+
+  isAuthenticated() {
+    return !!this.userData;
   }
 }

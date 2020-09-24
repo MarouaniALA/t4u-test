@@ -4,6 +4,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {IFile} from '../../models/IFile';
 import {Router} from '@angular/router';
 import {PassObjectService} from '../../services/pass-object.service';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-videos',
@@ -16,6 +17,7 @@ export class UserVideosComponent implements OnInit {
   files: File[] = [];
   config;
   breakpoint: number;
+  showSpinner = true;
 
   constructor(public authService: AuthService, private afs: AngularFirestore, private router: Router,
               private passObjectService: PassObjectService) {
@@ -34,28 +36,31 @@ export class UserVideosComponent implements OnInit {
   }
 
   onDrop(event) {
-    // console.log(files);
     this.files.push(...event.addedFiles);
 
   }
 
   getMyVideos() {
+    this.showSpinner = true;
+    this.userVideos = [];
     this.afs.collection('files', ref =>
       ref.where('uid', '==', this.authService.userData.uid)
         .where('type', '>=', 'video')
     )
-      .get().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const file = doc.data() as IFile;
-        file.id = doc.id;
-        this.userVideos.push(file);
+      .get()
+      .pipe(finalize(() => this.showSpinner = false))
+      .subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const file = doc.data() as IFile;
+          file.id = doc.id;
+          this.userVideos.push(file);
+        });
       });
-    });
 
   }
 
   watchVideo(file: IFile) {
-    // this.passObjectService.setCurrentWatchFile(file);
+    this.passObjectService.setCurrentWatchFile(file);
     this.router.navigate(['/watchVideos', file.id]);
   }
 

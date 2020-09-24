@@ -1,24 +1,71 @@
-<div class="container-fluid">
-<div class="row">
-  <div class="col-9">
-    <div class="m-1">
-      <vg-player>
-        <video #media [vgMedia]="media" preload="auto" [src]="currentWatchFile?.downloadURL">
-        </video>
-      </vg-player>
-    </div>
+<div class="spinner" *ngIf="showSpinner">
+  <div class="spinner-border" role="status">
   </div>
+</div>
 
+<div class="container-fluid sticky-vid-top bg-white">
+  <mat-icon class="arrow-back mt-3 ml-lg-3" routerLink="/userVideos">arrow_back_ios</mat-icon>
+</div>
 
-  <div class="col-3">
-    <div *ngFor="let file of suggestedVideos">
-      <vg-player>
-
-        <video #media [vgMedia]="media" preload="auto" [src]="file.downloadURL">
-        </video>
-      </vg-player>
+<div class="container-fluid mb-300 mt-lg-4">
+  <div class="row">
+    <div class="col-lg-8 sticky-vid-top bg-white top-52">
+      <div class="mt-3">
+        <vg-player *ngIf="currentWatchFile">
+          <video #media [vgMedia]="media" preload="auto" [src]="currentWatchFile?.downloadURL" controls>
+          </video>
+        </vg-player>
+      </div>
     </div>
+
+
+    <div class="col-lg-4">
+      <div class="row current-vid-title-block">
+        <div class="col-8">
+          <label class="text-points mt-3 title current-vid-title">{{currentWatchFile?.title | titlecase}}</label>
+        </div>
+        <div class="col-4 align-items-center justify-content-end d-flex">
+          <mat-icon>favorite</mat-icon>
+          <mat-icon>add</mat-icon>
+        </div>
+      </div>
+
+      <ng-container *ngIf="suggestedVideos.length !== 0">
+        <div *ngFor="let file of suggestedVideos; let index = index" class="mt-3 mb-3 d-md-flex suggested-vid"
+             (click)="changeVideo(file)">
+          <div class="col-lg-1 align-items-center d-none d-lg-flex title">{{index + 1}}</div>
+          <div class="col-md-5">
+            <vg-player>
+              <vg-buffering></vg-buffering>
+              <vg-controls>
+                <vg-time-display vgProperty="total"></vg-time-display>
+              </vg-controls>
+              <video #media [vgMedia]="media" preload="auto" [src]="file.downloadURL">
+              </video>
+            </vg-player>
+          </div>
+          <div class="col-md-6 p-md-0">
+            <label class="text-points title">{{file.title | titlecase}}</label>
+            <label class="text-points title">{{file.views }} views</label>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="mt-5" *ngIf="suggestedVideos.length === 0 && !showSpinner">
+        <div class="d-grid">
+          <label class="text-center">
+            <mat-icon class="no-vid-icon">videocam_off</mat-icon>
+          </label>
+          <label class="no-vid-text text-center">There are no suggested videos </label>
+        </div>
+
+      </div>
+    </div>
+
+
   </div>
 
 </div>
-</div>
+
+<app-footer></app-footer>

@@ -1,6 +1,7 @@
 mat-tab-group::ng-deep .mat-tab-header {
-  border-bottom: unset!important;
+  border-bottom: unset !important;
 }
+
 mat-tab-group::ng-deep .mat-tab-body {
   margin-top: 40px;
 }
@@ -20,6 +21,7 @@ ngx-dropzone {
   height: unset;
   border: unset;
 }
+
 .select-label {
   color: #373737;
   cursor: pointer;
@@ -40,4 +42,26 @@ ngx-dropzone {
 
 .tasks {
   margin: 65px 17px;
+}
+
+
+.logout {
+  cursor: pointer;
+  font-size: 40px;
+  color: #637076;
+}
+
+.text-align-end {
+  text-align: end;
+}
+
+.no-vid-text {
+  font-family: 'Roboto', 'Heebo', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.refresh-icon {
+  cursor: pointer;
+  font-size: 30px;
+  color: #637076;
 }

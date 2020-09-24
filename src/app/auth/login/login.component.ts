@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
@@ -22,10 +22,9 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       fullName: [],
     });
-
   }
+
   googleAuth() {
-    console.log(this.loginForm.get('fullName').value);
     this.authService.GoogleAuth(this.loginForm.get('fullName').value);
   }
 }

@@ -1,0 +1,41 @@
+.footer {
+  width: 100%;
+  border-top: 1px solid #efefef;
+  margin: auto;
+  padding-top: 40px;
+  background: white;
+}
+
+.row {
+  justify-content: center;
+}
+
+ul.items {
+  list-style: none;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 10px;
+}
+
+ul li {
+  display: inline-block;
+  margin-right: 35px;
+  cursor: pointer;
+
+}
+
+ul {
+  padding: 0;
+}
+
+.sub {
+  color: #868686;
+}
+
+.right {
+  text-align: right;
+  margin-top: 19px;
+}
+
+.logo {
+  width: 83px;
+}

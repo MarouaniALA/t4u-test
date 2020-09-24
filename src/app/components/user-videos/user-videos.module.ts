@@ -13,6 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {VgBufferingModule, VgControlsModule, VgCoreModule, VgOverlayPlayModule} from 'ngx-videogular';
 import {SharedModule} from '../../shared/shared.module';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [UserVideosComponent, UploadTaskComponent],
@@ -27,7 +29,11 @@ import {SharedModule} from '../../shared/shared.module';
     MatIconModule,
     VgCoreModule,
     VgControlsModule, VgOverlayPlayModule, VgBufferingModule,
-    SharedModule
-]
+    SharedModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
-export class UserVideosModule { }
+export class UserVideosModule {
+}
